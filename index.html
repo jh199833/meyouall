@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>안내</title>
+  <meta name="description" content="포스터 안내 페이지" />
+  <style>
+    :root { --maxw: 980px; }
+    body {
+      margin: 0;
+      background: #ffffff;
+      font-family: system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    }
+
+    /* 포스터 영역(아래 레이어) */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      position: relative; /* stacking context 명확화 */
+      z-index: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,.10);
+      background: #fff;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a.card {
+      display: block;
+      text-decoration: none;
+      outline: none;
+    }
+
+    a.card:focus-visible {
+      box-shadow: 0 0 0 4px rgba(0,0,0,.12), 0 12px 30px rgba(0,0,0,.10);
+    }
+
+    /* 인물: 항상 최상단(포스터 위) */
+    .fixed-person {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      width: clamp(260px, 32vw, 560px);
+      height: auto;
+      opacity: 1;              /* 진하게 */
+      pointer-events: none;    /* 클릭 방해 없음 */
+      z-index: 9999;           /* 최상단 */
+    }
+
+    /* 인물이 포스터를 가리는 것을 완화(모바일) */
+    @media (max-width: 640px) {
+      .wrap { padding-bottom: 260px; }
+      .fixed-person { width: clamp(240px, 62vw, 460px); }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="card">
+      <img src="001.jpg" alt="포스터 001" />
+    </div>
+
+    <a class="card" href="https://parkingsms.incheon.go.kr" target="_blank" rel="noopener noreferrer" aria-label="신청 링크로 이동">
+      <img src="002.jpg" alt="포스터 002 (클릭하면 신청 링크로 이동)" />
+    </a>
+  </main>
+
+  <img class="fixed-person" src="person.png" alt="" aria-hidden="true" />
+</body>
+</html>
